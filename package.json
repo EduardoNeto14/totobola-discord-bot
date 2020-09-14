@@ -1,0 +1,25 @@
+{
+  "name": "bot-totobola",
+  "version": "1.0.0",
+  "description": "## teste",
+  "main": "totobola.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EduardoNeto14/totobola-bot.git"
+  },
+  "author": "Eduardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EduardoNeto14/totobola-bot/issues"
+  },
+  "homepage": "https://github.com/EduardoNeto14/totobola-bot#readme",
+  "dependencies": {
+    "discord": "^0.8.2",
+    "discord.js": "^12.2.0",
+    "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {}
+}

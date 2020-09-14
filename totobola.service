@@ -1,0 +1,10 @@
+[Unit]
+Description=Totobola Discordiano service - bot para o Totobola
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=node /home/eduardo/bot-totobola/totobola.js
+Restart=always
