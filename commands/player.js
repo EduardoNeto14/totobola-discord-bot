@@ -39,12 +39,16 @@ module.exports = {
 						return;
 					}
 
-					if (row != null) { 
+					if (row != null) {
+
+						let player_info;
 						messageEmbed.setColor('#e56b00')
 						messageEmbed.setAuthor(message.mentions.users.first().username, message.mentions.users.first().displayAvatarURL());
-						messageEmbed.addFields(
-							{name : "Tugão: ", value : `**${row.totalTugao}**`, inline : true}
-						);
+						
+						player_info += `**TUGÃO**\n\nPontos: **${row.totalTugao}\n`;
+						//messageEmbed.addFields(
+						//	{name : "Tugão: ", value : `**${row.totalTugao}**`, inline : true}
+						//);
 						
 						db.get(`select count(*) + 1 from tugao where totalTugao > (select totalTugao from tugao where jogador = "{message.mentions.users.first().username}")`, (err, position) => {
 							
@@ -56,7 +60,8 @@ module.exports = {
 								return;
 							}
 							
-							messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
+							player_info += `Posição: ${Object.values(position)[0]}º\n`;
+							//messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
 
 							db.get(`select count(*) from vencedoresTugao where jogador = "${message.mentions.users.first().username}"`, (err, count) => {
 							
@@ -67,7 +72,8 @@ module.exports = {
 									message.channel.send(messageEmbed);
 									return;
 								}
-								messageEmbed.addField("Vitórias: ", `${Object.values(count)[0]}`, true);
+								player_info += `Vitórias: ${Object.values(count)[0]}\n`;
+								//messageEmbed.addField("Vitórias: ", `${Object.values(count)[0]}`, true);
 
 								db.get(`select (select totalTugao from tugao where jogador = "${message.mentions.users.first().username}") / (select jornadas from tugao where jogador = "${message.mentions.users.first().username}");`, (err, media) => {
 											
@@ -78,10 +84,11 @@ module.exports = {
 										return;
 									}
 
-									if (Object.values(media)[0] !== null)		messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
-									messageEmbed.addField('\u200B', '\u200B');
-									messageEmbed.addField("Champions: ", `**${row.totalChampions}**`, true);
-									
+									if (Object.values(media)[0] !== null)	player_info += `Média: ${Object.values(media)[0]}º\n`;	
+									//messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
+									//messageEmbed.addField('\u200B', '\u200B');
+									//messageEmbed.addField("Champions: ", `**${row.totalChampions}**`, true);
+									player_info += `**CHAMPIONS**\n\nPontos: **${row.totalChampions}**\n`;
 									db.get(`select count(*) + 1 from champions where totalChampions > (select totalChampions from champions where jogador = "{message.mentions.users.first().username}")`, (err, position) => {
 										
 										
@@ -91,8 +98,8 @@ module.exports = {
 											message.channel.send(messageEmbed);
 											return;
 										}
-										
-										messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
+										player_info += `Posição: ${Object.values(position)[0]}\n`;
+										//messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
 										
 										db.get(`select count(*) from vencedoresChampions where jogador = "${message.mentions.users.first().username}"`, (err, count) => {
 										
@@ -102,7 +109,7 @@ module.exports = {
 												message.channel.send(messageEmbed);
 												return;
 											}
-											
+											player_info += `Vitórias: ${Object.values(count)[0]}\n`;
 											messageEmbed.addField("Vitórias: ", `${Object.values(count)[0]}`, true)
 
 											db.get(`select (select totalChampions from champions where jogador = "${message.mentions.users.first().username}") / (select jornadas from champions where jogador = "${message.mentions.users.first().username}");`, (err, media) => {
@@ -114,9 +121,11 @@ module.exports = {
 													return;
 												}
 												
-												if (Object.values(media)[0] !== null)		messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
-												messageEmbed.addField('\u200B', '\u200B');
-												messageEmbed.addField("Best Of: ", `**${row.totalBestOf}**`, true);
+												if (Object.values(media)[0] !== null)	player_info += `Média: ${Object.values(media)[0]}\n`;	
+												//messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
+												//messageEmbed.addField('\u200B', '\u200B');
+												//messageEmbed.addField("Best Of: ", `**${row.totalBestOf}**`, true);
+												player_info += `**BEST OF**\n\nPontos: **${row.totalBestOf}**\n`;
 												
 												db.get(`select count(*) + 1 from bestof where totalBestOf > (select totalBestOf from bestof where jogador = "{message.mentions.users.first().username}")`, (err, position) => {
 													
@@ -127,8 +136,8 @@ module.exports = {
 														message.channel.send(messageEmbed);
 														return;
 													}
-													
-													messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
+													player_info += `Posição: ${Object.values(position)[0]}\n`;
+													//messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
 													
 													db.get(`select count(*) from vencedoresBestOf where jogador = "${message.mentions.users.first().username}"`, (err, count) => {
 												
@@ -139,7 +148,8 @@ module.exports = {
 															return;
 														}
 														
-														messageEmbed.addField("Vitórias: ", `${Object.values(count)[0]}`, true)
+														//messageEmbed.addField("Vitórias: ", `${Object.values(count)[0]}`, true)
+														player_info += `Vitórias: ${Object.values(count)[0]}\n`;
 														db.get(`select (select totalBestOf from bestof where jogador = "${message.mentions.users.first().username}") / (select jornadas from bestof where jogador = "${message.mentions.users.first().username}");`, (err, media) => {
 													
 															if (err) {
@@ -149,10 +159,11 @@ module.exports = {
 																return;
 															}
 															
-															if (Object.values(media)[0] !== null)		messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
-															messageEmbed.addField('\u200B', '\u200B');
-															messageEmbed.addField("Total Discordiano: ", `**${row.totalDiscordiano}**`);
-
+															if (Object.values(media)[0] !== null)	player_info += `Média: ${Object.values(media)[0]}\n`;	
+															//messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
+															//messageEmbed.addField('\u200B', '\u200B');
+															//messageEmbed.addField("Total Discordiano: ", `**${row.totalDiscordiano}**`);
+															player_info += `**TOTAL DISCORDIANO**\n\nPontos: **${row.totalDiscordiano}**\n`;
 															
 															db.get(`select count(*) + 1 from total where totalDiscordiano > (select totalDiscordiano from total where jogador = "{message.mentions.users.first().username}")`, (err, position) => {
 																
@@ -163,9 +174,9 @@ module.exports = {
 																	message.channel.send(messageEmbed);
 																	return;
 																}
-																
-																messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
-
+																player_info += `Posição: ${Object.values(position)[0]}\n`;
+																//messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
+																messageEmbed.setDescription(player_info);
 																message.channel.send(messageEmbed);
 
 															});
