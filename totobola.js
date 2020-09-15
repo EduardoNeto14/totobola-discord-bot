@@ -36,8 +36,10 @@ bot.on("message", message => {
 	}
 	catch {}
 	
-	
-	if (command_space === 'tugao') {
+	if (message.isMemberMentioned(client.user)) {
+		message.channel.send("Que é que queres, arara burra?");
+	}
+	else if (command_space === 'tugao') {
 		bot.commands.get("tugao").execute(message, args_space);	
 	}
 	else if (command_space === 'champions') {
