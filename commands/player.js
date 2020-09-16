@@ -41,11 +41,11 @@ module.exports = {
 
 					if (row != null) {
 
-						let player_info;
+						let player_info = "";
 						messageEmbed.setColor('#e56b00')
 						messageEmbed.setAuthor(message.mentions.users.first().username, message.mentions.users.first().displayAvatarURL());
 						
-						player_info += `**TUGÃO**\n\nPontos: **${row.totalTugao}\n`;
+						player_info += `**TUGÃO**\n\nPontos: **${row.totalTugao}**\n`;
 						//messageEmbed.addFields(
 						//	{name : "Tugão: ", value : `**${row.totalTugao}**`, inline : true}
 						//);
@@ -84,11 +84,11 @@ module.exports = {
 										return;
 									}
 
-									if (Object.values(media)[0] !== null)	player_info += `Média: ${Object.values(media)[0]}º\n`;	
+									if (Object.values(media)[0] !== null)	player_info += `Média: ${Object.values(media)[0]}\n`;	
 									//messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
 									//messageEmbed.addField('\u200B', '\u200B');
 									//messageEmbed.addField("Champions: ", `**${row.totalChampions}**`, true);
-									player_info += `**CHAMPIONS**\n\nPontos: **${row.totalChampions}**\n`;
+									player_info += `\n**CHAMPIONS**\n\nPontos: **${row.totalChampions}**\n`;
 									db.get(`select count(*) + 1 from champions where totalChampions > (select totalChampions from champions where jogador = "{message.mentions.users.first().username}")`, (err, position) => {
 										
 										
@@ -98,7 +98,7 @@ module.exports = {
 											message.channel.send(messageEmbed);
 											return;
 										}
-										player_info += `Posição: ${Object.values(position)[0]}\n`;
+										player_info += `Posição: ${Object.values(position)[0]}º\n`;
 										//messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
 										
 										db.get(`select count(*) from vencedoresChampions where jogador = "${message.mentions.users.first().username}"`, (err, count) => {
@@ -110,7 +110,7 @@ module.exports = {
 												return;
 											}
 											player_info += `Vitórias: ${Object.values(count)[0]}\n`;
-											messageEmbed.addField("Vitórias: ", `${Object.values(count)[0]}`, true)
+											//messageEmbed.addField("Vitórias: ", `${Object.values(count)[0]}`, true)
 
 											db.get(`select (select totalChampions from champions where jogador = "${message.mentions.users.first().username}") / (select jornadas from champions where jogador = "${message.mentions.users.first().username}");`, (err, media) => {
 												
@@ -125,7 +125,7 @@ module.exports = {
 												//messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
 												//messageEmbed.addField('\u200B', '\u200B');
 												//messageEmbed.addField("Best Of: ", `**${row.totalBestOf}**`, true);
-												player_info += `**BEST OF**\n\nPontos: **${row.totalBestOf}**\n`;
+												player_info += `\n**BEST OF**\n\nPontos: **${row.totalBestOf}**\n`;
 												
 												db.get(`select count(*) + 1 from bestof where totalBestOf > (select totalBestOf from bestof where jogador = "{message.mentions.users.first().username}")`, (err, position) => {
 													
@@ -136,7 +136,7 @@ module.exports = {
 														message.channel.send(messageEmbed);
 														return;
 													}
-													player_info += `Posição: ${Object.values(position)[0]}\n`;
+													player_info += `Posição: ${Object.values(position)[0]}º\n`;
 													//messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
 													
 													db.get(`select count(*) from vencedoresBestOf where jogador = "${message.mentions.users.first().username}"`, (err, count) => {
@@ -163,7 +163,7 @@ module.exports = {
 															//messageEmbed.addField("Média: ", `${Object.values(media)[0]}`, true);
 															//messageEmbed.addField('\u200B', '\u200B');
 															//messageEmbed.addField("Total Discordiano: ", `**${row.totalDiscordiano}**`);
-															player_info += `**TOTAL DISCORDIANO**\n\nPontos: **${row.totalDiscordiano}**\n`;
+															player_info += `\n**TOTAL DISCORDIANO**\n\nPontos: **${row.totalDiscordiano}**\n`;
 															
 															db.get(`select count(*) + 1 from total where totalDiscordiano > (select totalDiscordiano from total where jogador = "{message.mentions.users.first().username}")`, (err, position) => {
 																
@@ -174,7 +174,8 @@ module.exports = {
 																	message.channel.send(messageEmbed);
 																	return;
 																}
-																player_info += `Posição: ${Object.values(position)[0]}\n`;
+																player_info += `Posição: ${Object.values(position)[0]}º\n`;
+																//console.log(player_info);
 																//messageEmbed.addField("Posição:", `${Object.values(position)[0]}º`);
 																messageEmbed.setDescription(player_info);
 																message.channel.send(messageEmbed);

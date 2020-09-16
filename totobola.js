@@ -23,20 +23,25 @@ bot.on("message", message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).split(/\n+/);
+	
+	let j = args[0];
+
 	const args_space = message.content.slice(prefix.length).split(/ +/);
 	
 	const command = args.shift().toLowerCase();
+
 	const command_space = args_space.shift().toLowerCase();
 	
 	var args_comb;
-	let command_comb = null;
-	
-	try {	
-		args_comb = args_space[0].split(/\n+/);
+
+	try {
+		args_comb = args;
+		args_comb.unshift(j.split(/ +/)[1]);
 	}
 	catch {}
 	
-	if (message.isMemberMentioned(client.user)) {
+	if (message.mentions.has(bot.user)) {
+		console.log("kndkasa");
 		message.channel.send("Que é que queres, arara burra?");
 	}
 	else if (command_space === 'tugao') {
@@ -55,16 +60,23 @@ bot.on("message", message => {
 		bot.commands.get("player").execute(message, args_space);	
 	}
 	else if (command === 'apostartugao') {
-		bot.commands.get("apostartugao").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("apostartugao").execute(message, aposta);	
 	}
 	else if (command_space === 'starttugao') {
 		bot.commands.get("starttugao").execute(message, args_comb);	
 	}
 	else if (command_space === 'stoptugao') {
+		console.log(args_comb);
 		bot.commands.get("stoptugao").execute(message, args_comb);	
 	}
 	else if (command === 'apostarchampions') {
-		bot.commands.get("apostarchampions").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("apostarchampions").execute(message, aposta);	
 	}
 	else if (command_space === 'startchampions') {
 		bot.commands.get("startchampions").execute(message, args_comb);	
@@ -73,7 +85,10 @@ bot.on("message", message => {
 		bot.commands.get("stopchampions").execute(message, args_comb);	
 	}
 	else if (command === 'apostarbestof') {
-		bot.commands.get("apostarbestof").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("apostarbestof").execute(message, aposta);	
 	}
 	else if (command_space === 'startbestof') {
 		bot.commands.get("startbestof").execute(message, args_comb);	
@@ -97,13 +112,22 @@ bot.on("message", message => {
 		bot.commands.get("registar").execute(message, args);	
 	}
 	else if (command === 'updatetugao') {
-		bot.commands.get("updatetugao").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("updatetugao").execute(message, aposta);	
 	}
 	else if (command === 'updatechampions') {
-		bot.commands.get("updatechampions").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("updatechampions").execute(message, aposta);	
 	}
 	else if (command === 'updatebestof') {
-		bot.commands.get("updatebestof").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("updatebestof").execute(message, aposta);	
 	}
 	else if (command_space === 'comandos') {
 		bot.commands.get("comandos").execute(message, args_space);	

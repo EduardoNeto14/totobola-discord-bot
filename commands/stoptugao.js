@@ -60,6 +60,7 @@ function finalizar(messageEmbed, message, args, db) {
 }
 
 function calculo_tendencia(res) {
+	console.log("Calculo Tendencia\n");
 	console.log(res.substr(0, res.indexOf("-")), parseInt(res.substr(0, res.indexOf("-"))), (isNaN(parseInt(res.substr(0, res.indexOf("-"))))));
 	console.log(res.substr(res.indexOf("-") + 1, res.length), parseInt(res.substr(res.indexOf("-") + 1, res.length)), (isNaN(parseInt(res.substr(res.indexOf("-"), res.length)))));
 	
@@ -170,7 +171,10 @@ module.exports = {
 																	else if		(calculo_tendencia(prog[1][`jogo${game}`].substr(0, prog[1][`jogo${game}`].indexOf("*"))) === tendencia_resultado[`jogo${game}`])				pontuacoes[`${prog[1]["jogador"]}`] += 1*2; 
 																}
 															}
-															
+															else if ((prog[1][`jogo${game}`].includes("*")) && joker) {
+																if 			(args[game] === prog[1][`jogo${game}`].substr(0,prog[1][`jogo${game}`].indexOf("*")))													pontuacoes[`${prog[1]["jogador"]}`] += 3; 
+																else if		(calculo_tendencia(prog[1][`jogo${game}`].substr(0,prog[1][`jogo${game}`].indexOf("*"))) === tendencia_resultado[`jogo${game}`])		pontuacoes[`${prog[1]["jogador"]}`] += 1;
+															}
 															else {
 																if (prog[1][`jogo${game}`].substr(0,3) !== "x-x") { 
 																	if 			(args[game] === prog[1][`jogo${game}`])															pontuacoes[`${prog[1]["jogador"]}`] += 3; 

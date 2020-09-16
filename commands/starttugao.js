@@ -7,6 +7,7 @@ module.exports = {
 	name : "starttugao",
 	description : "Começar jornada do Tugão",
 	execute(message, args) {
+		console.log(args);
 		const messageEmbed = new Discord.MessageEmbed().setTitle("Tugão");
 		if (["MrRed", "Rouxinol Expansivo"].includes(message.author.username)) {
 			

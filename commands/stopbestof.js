@@ -170,9 +170,12 @@ module.exports = {
 																if 			(args[game] === prog[1][`jogo${game}`].substr(0,prog[1][`jogo${game}`].indexOf("*")))													pontuacoes[`${prog[1]["jogador"]}`] += 3*2; 
 																else if		(calculo_tendencia(prog[1][`jogo${game}`].substr(0,prog[1][`jogo${game}`].indexOf("*"))) === tendencia_resultado[`jogo${game}`])		pontuacoes[`${prog[1]["jogador"]}`] += 1*2; 
 															}
-															
+															else if ((prog[1][`jogo${game}`].includes("*")) && joker) {
+																if 			(args[game] === prog[1][`jogo${game}`].substr(0,prog[1][`jogo${game}`].indexOf("*")))													pontuacoes[`${prog[1]["jogador"]}`] += 3; 
+																else if		(calculo_tendencia(prog[1][`jogo${game}`].substr(0,prog[1][`jogo${game}`].indexOf("*"))) === tendencia_resultado[`jogo${game}`])		pontuacoes[`${prog[1]["jogador"]}`] += 1;
+															}
 															else {
-																if 			(args[game] === prog[1][`jogo${game}`])															pontuacoes[`${prog[1]["jogador"]}`] += 3; 
+																if 			(args[game] === prog[1][`jogo${game}`])													pontuacoes[`${prog[1]["jogador"]}`] += 3; 
 																else if		(calculo_tendencia(prog[1][`jogo${game}`]) === tendencia_resultado[`jogo${game}`])		pontuacoes[`${prog[1]["jogador"]}`] += 1; 
 															}
 															console.log("Pontuação: ", pontuacoes[prog[1]["jogador"]]);									
