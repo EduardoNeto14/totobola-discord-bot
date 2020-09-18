@@ -37,7 +37,8 @@ module.exports = {
                 {name: "**!vencedorestugao**"    ,     value: "Vencedores do Tugão"                             },
                 {name: "**!vencedoreschampions**",     value: "Vencedores da Champions"                         },
                 {name: "**!vencedoresbestof**"   ,     value: "Vencedores do Best Of"                           },
-                {name: "**!minhaaposta**"        ,     value: "Verificar aposta registada"                      }
+                {name: "**!minhaaposta**"        ,     value: "Verificar aposta registada"                      },
+                {name: "**!jornada**"            ,     value: "Verificar jornada ativa"                         },
                 );
         }
 
