@@ -28,7 +28,7 @@ bot.on("message", message => {
 
 	const args_space = message.content.slice(prefix.length).split(/ +/);
 	
-	const command = args.shift().toLowerCase();
+	const command = args.shift().toLowerCase().trim();
 
 	const command_space = args_space.shift().toLowerCase();
 	
@@ -40,11 +40,12 @@ bot.on("message", message => {
 	}
 	catch {}
 	
-	if (message.mentions.has(bot.user)) {
-		console.log("kndkasa");
-		message.channel.send("Que é que queres, arara burra?");
-	}
-	else if (command_space === 'tugao') {
+	console.log("MESSAGE: ", message);
+	console.log("ARGS: ", args);
+
+	if (args[0] != undefined) {args[0] = undefined};
+
+	if (command_space === 'tugao') {
 		bot.commands.get("tugao").execute(message, args_space);	
 	}
 	else if (command_space === 'champions') {
@@ -97,7 +98,10 @@ bot.on("message", message => {
 		bot.commands.get("stopbestof").execute(message, args_comb);	
 	}
 	else if (command === 'totobola') {
-		bot.commands.get("totobola").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("totobola").execute(message, aposta);	
 	}
 	else if (command_space === 'cleantugao') {
 		bot.commands.get("cleantugao").execute(message, args_space);	
@@ -109,7 +113,10 @@ bot.on("message", message => {
 		bot.commands.get("cleanbestof").execute(message, args_space);	
 	}
 	else if (command === 'registar') {
-		bot.commands.get("registar").execute(message, args);	
+		var aposta = args.filter( function(und) {
+			return und != undefined;
+		});
+		bot.commands.get("registar").execute(message, aposta);	
 	}
 	else if (command === 'updatetugao') {
 		var aposta = args.filter( function(und) {

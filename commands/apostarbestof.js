@@ -39,7 +39,7 @@ function get_predictions(message, messageEmbed, args, db) {
 					return;
 				}
 				has_joker = false;
-				args.forEach( (result)  => {
+				args.forEach( (result, g)  => {
 					
 					if (result.lastIndexOf("-") == -1) {    
 						
@@ -69,7 +69,7 @@ function get_predictions(message, messageEmbed, args, db) {
 						return;
 					}
 			
-					messageEmbed.addField("Jogo: ", `**${result}**`);
+					messageEmbed.addField(`${games[`jogo${g + 1}`]}`, `**${result}**`);
 					results.push(result);
 				
 					if (result.includes("*") && !has_joker)		has_joker = true;

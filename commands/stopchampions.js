@@ -61,11 +61,12 @@ function finalizar(messageEmbed, message, args, db) {
 
 function calculo_tendencia(res) {
 	
-	if ((isNaN(parseInt(res.substr(0, res.indexOf("-"))))) || (isNaN(parseInt(res.substr(res.indexOf("-") + 1, res.length)))))			{console.log("NULL"); return null;}
+	if ((isNaN(parseInt(res.substr(0, res.indexOf("-"))))) || (isNaN(parseInt(res.substr(res.indexOf("-") + 1, res.length)))) && (res !== "n/a"))			{console.log("NULL"); return null;}
 		
 		if 			(parseInt(res.substr(0, res.indexOf("-"))) 	> 	parseInt(res.substr(res.indexOf("-") + 1, res.length)))			return "c";
 		else if 	(parseInt(res.substr(0, res.indexOf("-"))) 	==	parseInt(res.substr(res.indexOf("-") + 1, res.length)))			return "e";
 		else if 	(parseInt(res.substr(0, res.indexOf("-"))) 	< 	parseInt(res.substr(res.indexOf("-") + 1, res.length)))			return "f";
+		else if		(res === "n/a")																									return "a";
 		else if 	((res === "x-x") || (res == "X-X"))																				return "n";																															
 }
 module.exports = {

@@ -67,7 +67,7 @@ module.exports = {
 		else {
 			messageEmbed.setColor("#969C9F");
 			messageEmbed.setDescription("Este comando não recebe argumentos.\n\n Usa apenas **!registar**.\n")
-			messageEmbed.addFiled("Erro", "Argumentos a mais...");
+			messageEmbed.addField("Erro", "Argumentos a mais...");
 			message.channel.send(messageEmbed);
 		}
 		
