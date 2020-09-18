@@ -52,9 +52,8 @@ function get_predictions(message, messageEmbed, args, db) {
 						error = true;
 						return;
 					}
-					
-					result = result.slice(result.lastIndexOf("-") - 3, result.lastIndexOf("-") + 3);
-					result = result.replace(" ", "");
+					result = result.slice(result.lastIndexOf(":"), result.length);
+					result = result.replace(/\s/g, '');
 					result = result.replace(":", "");
 					result = result.replace("o", "");
 

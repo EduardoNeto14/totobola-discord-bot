@@ -91,7 +91,7 @@ module.exports = {
 									
 									args.forEach( (jogo) => {
 										
-										var result = jogo.slice(jogo.lastIndexOf("-") - 3, jogo.lastIndexOf("-") + 3).replace(" ", "").replace(":", "").replace("o", "");
+										var result = jogo.slice(jogo.lastIndexOf("-") - 3, jogo.lastIndexOf("-") + 3).replace("/\s/g", "").replace(":", "").replace("o", "");
 										
 										if (((typeof result === "undefined") || (result.lenth < 3) || (isNaN(parseInt(result.substr(0, result.lastIndexOf("-"))))) || (isNaN(parseInt(result.substr(result.lastIndexOf("-") + 1, result.length))))) && (result !== "x-x")) {
 											messageEmbed.setColor("#969C9F");
