@@ -63,17 +63,20 @@ module.exports = {
                                     message.channel.send(messageEmbed);
                                     return;
                                 }
+                                
+                                console.log(games);
 
                                 games = Object.values(games);
                                 let str_games = "";
 
                                 for (const game of games) {
-                                    str_games += `**${games}**\n`;
+                                    console.log(game);
+                                    str_games += `**${game}**\n`;
                                 }
 
                                 console.log(str_games);
 
-                                messageEmbed.setColor("#b6b4b1");
+                                messageEmbed.setColor("#FFFFFF");
                                 messageEmbed.setDescription(str_games);
                                 message.channel.send(messageEmbed);
                             });

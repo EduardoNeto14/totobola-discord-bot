@@ -49,7 +49,7 @@ bot.on("message", message => {
 		bot.commands.get("tugao").execute(message, args_space);	
 	}
 	if (command_space === 'jornada') {
-		bot.commands.get("tugao").execute(message, args_space);	
+		bot.commands.get("jornada").execute(message, args_space);	
 	}
 	else if (command_space === 'champions') {
 		bot.commands.get("champions").execute(message, args_space);	

@@ -55,7 +55,7 @@ module.exports = {
 					
 						messageEmbed.setColor("#CC7900");
 						messageEmbed.setAuthor(message.author.username, message.author.displayAvatarURL());
-						messageEmbed.addField("Sucesso", "Resgistado com sucesso!\n\n**Boa sorte, sua arara burra!**");
+						messageEmbed.addField("Sucesso", "Registado com sucesso!\n\n**Boa sorte, sua arara burra!**");
 						message.channel.send(messageEmbed);
 					}
 				});
