@@ -154,6 +154,18 @@ bot.on("message", message => {
 	else if (command_space === 'minhaaposta') {
 		bot.commands.get("minhaaposta").execute(message, args_space);	
 	}
+	else if (command_space === 'alterartugao') {
+		console.log(args_comb);
+		bot.commands.get("alterartugao").execute(message, args_comb);	
+	}
+	else if (command_space === 'alterarchampions') {
+		console.log(args_comb);
+		bot.commands.get("alterarchampions").execute(message, args_comb);	
+	}
+	else if (command_space === 'alterarbestof') {
+		console.log(args_comb);
+		bot.commands.get("alterarbestof").execute(message, args_comb);	
+	}
 	else {
 		const messageEmbed = new Discord.MessageEmbed().setTitle("Comando");
 		messageEmbed.setColor("");
