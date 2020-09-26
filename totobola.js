@@ -35,20 +35,25 @@ bot.on("message", message => {
 	var args_comb;
 
 	try {
-		args_comb = args;
+		args_comb = Object.assign({}, args);
+		args_comb = Object.values(args_comb);
 		args_comb.unshift(j.split(/ +/)[1]);
+		console.log(`ARGS_COMB: ${args_comb}\n`)
 	}
 	catch {}
 	
-	console.log("MESSAGE: ", message);
-	console.log("ARGS: ", args);
+	/*console.log("MESSAGE: ", message);
+	console.log("ARGS: ", args);*/
+	
+	var args_stop = Object.assign({}, args);
+	args_stop = Object.values(args_stop);
 
 	if (args[0] != undefined) {args[0] = undefined};
 
 	if (command_space === 'tugao') {
 		bot.commands.get("tugao").execute(message, args_space);	
 	}
-	if (command_space === 'jornada') {
+	else if (command_space === 'jornada') {
 		bot.commands.get("jornada").execute(message, args_space);	
 	}
 	else if (command_space === 'champions') {
@@ -64,20 +69,24 @@ bot.on("message", message => {
 		bot.commands.get("player").execute(message, args_space);	
 	}
 	else if (command === 'apostartugao') {
-		var aposta = args.filter( function(und) {
+		//console.log("ARGS_COMB: ", args_comb);
+		var aposta = args_comb.filter( function(und) {
 			return und != undefined;
 		});
+
+		console.log(`Aposta: ${aposta}\n`);
 		bot.commands.get("apostartugao").execute(message, aposta);	
 	}
 	else if (command_space === 'starttugao') {
+		
 		bot.commands.get("starttugao").execute(message, args_comb);	
 	}
 	else if (command_space === 'stoptugao') {
-		console.log(args_comb);
-		bot.commands.get("stoptugao").execute(message, args_comb);	
+		console.log("########STOP TUGÂO########\n", args_stop);
+		bot.commands.get("stoptugao").execute(message, args_stop);	
 	}
 	else if (command === 'apostarchampions') {
-		var aposta = args.filter( function(und) {
+		var aposta = args_comb.filter( function(und) {
 			return und != undefined;
 		});
 		bot.commands.get("apostarchampions").execute(message, aposta);	
@@ -86,10 +95,11 @@ bot.on("message", message => {
 		bot.commands.get("startchampions").execute(message, args_comb);	
 	}
 	else if (command_space === 'stopchampions') {
-		bot.commands.get("stopchampions").execute(message, args_comb);	
+		console.log(args_stop);
+		bot.commands.get("stopchampions").execute(message, args_stop);	
 	}
 	else if (command === 'apostarbestof') {
-		var aposta = args.filter( function(und) {
+		var aposta = args_comb.filter( function(und) {
 			return und != undefined;
 		});
 		bot.commands.get("apostarbestof").execute(message, aposta);	
@@ -98,7 +108,8 @@ bot.on("message", message => {
 		bot.commands.get("startbestof").execute(message, args_comb);	
 	}
 	else if (command_space === 'stopbestof') {
-		bot.commands.get("stopbestof").execute(message, args_comb);	
+		console.log(args_stop);
+		bot.commands.get("stopbestof").execute(message, args_stop);	
 	}
 	else if (command === 'totobola') {
 		var aposta = args.filter( function(und) {
@@ -122,19 +133,20 @@ bot.on("message", message => {
 		bot.commands.get("registar").execute(message, aposta);	
 	}
 	else if (command === 'updatetugao') {
-		var aposta = args.filter( function(und) {
+		var aposta = args_comb.filter( function(und) {
 			return und != undefined;
 		});
+		console.log(`Update Tugão: ${aposta}`);
 		bot.commands.get("updatetugao").execute(message, aposta);	
 	}
 	else if (command === 'updatechampions') {
-		var aposta = args.filter( function(und) {
+		var aposta = args_comb.filter( function(und) {
 			return und != undefined;
 		});
 		bot.commands.get("updatechampions").execute(message, aposta);	
 	}
 	else if (command === 'updatebestof') {
-		var aposta = args.filter( function(und) {
+		var aposta = args_comb.filter( function(und) {
 			return und != undefined;
 		});
 		bot.commands.get("updatebestof").execute(message, aposta);	

@@ -7,7 +7,7 @@ const Discord = require("discord.js");
 function get_predictions(message, messageEmbed, args, db) {
 	
 	var results = [];
-
+	
 	try {
 		let error = false;
 
@@ -30,6 +30,9 @@ function get_predictions(message, messageEmbed, args, db) {
 				}
 			});
 			
+			console.log(`Número de jogos: ${n_jogos}\n`);
+			console.log(`Tabela: ${tabela}\n`);
+			
 			db.get(`select * from ${tabela}_games`, (err, games) => {
 
 				if (err) {
@@ -41,6 +44,9 @@ function get_predictions(message, messageEmbed, args, db) {
 				
 				let has_joker = false;
 				
+				console.log(`Argumentos recebidos: ${args}\n`);
+				console.log(`Número de argumentos: ${args.length}\n`);
+
 				args.forEach( (result, g)  => {
 					console.log(result);
 					if (result.lastIndexOf("-") == -1) {    
@@ -60,6 +66,8 @@ function get_predictions(message, messageEmbed, args, db) {
 					result = result.replace(/\s/g, '');
 					result = result.replace(":", "");
 					result = result.replace("o", "");
+					
+					console.log(`Resultado: ${result}\n`);
 
 					if (((result.length < 3) || (isNaN(parseInt(result.substr(0, result.lastIndexOf("-"))))) || (isNaN(parseInt(result.substr(result.lastIndexOf("-") + 1, result.length))))) && (result !== "x-x")) {
 						console.log("defeito\n");
@@ -82,6 +90,7 @@ function get_predictions(message, messageEmbed, args, db) {
 					else if (result.includes("*") && has_joker)	messageEmbed.addField("Aviso", "Tens mais que um joker. Apenas o primeiro será contado");
 				});
 				
+				console.log(`Resultados recolhidos: ${results}\nNúmero de resultados: ${results.length}\n`);
 				if (!error) {
 					if (!has_joker)		messageEmbed.addField("Aviso", "**Não introduziste nenhum joker. Utiliza o *!updatetugao* **"); 
 					db.get(`select jogador from ${tabela} where jogador = ?`, [message.author.username], (err, row) => {
@@ -158,6 +167,8 @@ module.exports = {
 	description : "Regista a aposta no Tugão de um jogador",
 	execute(message, args) {
 		const messageEmbed = new Discord.MessageEmbed().setTitle("Aposta Tugão");
+		
+		console.log("##############Apostar Tugão######################\n");
 		
 		if (Object.keys(args).length === 0) {
 			messageEmbed.setColor("#969C9F");

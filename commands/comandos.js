@@ -39,6 +39,7 @@ module.exports = {
                 {name: "**!vencedoresbestof**"   ,     value: "Vencedores do Best Of"                           },
                 {name: "**!minhaaposta**"        ,     value: "Verificar aposta registada"                      },
                 {name: "**!jornada**"            ,     value: "Verificar jornada ativa"                         },
+                {name: "**!minhaaposta**"        ,     value: "Mostra a sua aposta de uma competição especifica"},
                 );
         }
 

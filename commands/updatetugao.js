@@ -123,9 +123,12 @@ module.exports = {
 											messageEmbed.setAuthor(message.author.username, message.author.displayAvatarURL());
 											messageEmbed.setColor("#A62019");
 											
+											
+											//console.log(`Matches: ${matches}\n`);
 											for (const [index, match] of matches.entries()) {
 												sql += ` ${match} = "${nextRes[index]}",`;
-												messageEmbed.addField(`${row[matches]} `, `Alteraste de ${progs[match]} para ${nextRes[index]}`);
+												//console.log(`Match: ${}`)
+												messageEmbed.addField(`${row[match]} `, `Alteraste de ${progs[match]} para ${nextRes[index]}`);
 											}
 											
 											sql = sql.substr(0, sql.length -1);

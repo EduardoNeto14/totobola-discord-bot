@@ -61,7 +61,9 @@ function finalizar(messageEmbed, message, args, db) {
 
 function calculo_tendencia(res) {
 	
-	if ((isNaN(parseInt(res.substr(0, res.indexOf("-"))))) || (isNaN(parseInt(res.substr(res.indexOf("-") + 1, res.length)))) && (res !== "n/a"))			{console.log("NULL"); return null;}
+	if (res !== "n/a") {
+		if ((isNaN(parseInt(res.substr(0, res.indexOf("-"))))) || (isNaN(parseInt(res.substr(res.indexOf("-") + 1, res.length)))))			{console.log("NULL"); return null;}
+	}
 		
 		if 			(parseInt(res.substr(0, res.indexOf("-"))) 	> 	parseInt(res.substr(res.indexOf("-") + 1, res.length)))			return "c";
 		else if 	(parseInt(res.substr(0, res.indexOf("-"))) 	==	parseInt(res.substr(res.indexOf("-") + 1, res.length)))			return "e";

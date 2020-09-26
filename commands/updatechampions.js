@@ -125,7 +125,7 @@ module.exports = {
 											
 											for (const [index, match] of matches.entries()) {
 												sql += ` ${match} = "${nextRes[index]}",`;
-												messageEmbed.addField(`${row[matches]} `, `Alteraste de ${progs[match]} para ${nextRes[index]}`);
+												messageEmbed.addField(`${row[match]} `, `Alteraste de ${progs[match]} para ${nextRes[index]}`);
 											}
 											
 											sql = sql.substr(0, sql.length -1);
