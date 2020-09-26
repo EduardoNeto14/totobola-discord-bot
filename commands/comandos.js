@@ -27,6 +27,11 @@ module.exports = {
                 {name: "**!stopchampions**"      ,     value: "Termina uma jornada do Champions"                },
                 {name: "**!apostarbestof**"      ,     value: "Regista a aposta de um jogador (Best Of)"        },
                 {name: "**!updatebestof**"       ,     value: "Atualiza a aposta de um jogador (Best Of)"       },
+            );
+            messageEmbed.setFooter("1/2");
+            message.channel.send(messageEmbed);
+            messageEmbed.fields = [];
+            messageEmbed.addFields(
                 {name: "**!startbestof**"        ,     value: "Iniciar jornada do Best Of"                      },
                 {name: "**!cleanbestof**"        ,     value: "Limpa uma jornada do Best Of"                    },
                 {name: "**!stopbestof**"         ,     value: "Termina uma jornada do Best Of"                  },
@@ -41,6 +46,7 @@ module.exports = {
                 {name: "**!jornada**"            ,     value: "Verificar jornada ativa"                         },
                 {name: "**!minhaaposta**"        ,     value: "Mostra a sua aposta de uma competição especifica"},
                 );
+            messageEmbed.setFooter("2/2");
         }
 
         else if (Object.keys(args).length > 1) {
