@@ -64,8 +64,7 @@ module.exports = {
                             console.log(sum_tugao);
                             message_to_send += `Número de apostas: **${Object.values(sum_tugao)[0]}**\n`;
                             message_to_send += `Total de pontos: **${Object.values(sum_tugao)[1]}**\n`;
-                            message_to_send += `Média de pontos: **${Object.values(sum_tugao)[1]/Object.values(sum_tugao)[0]}**\n`;
-
+                            message_to_send += `Média de pontos: **${Math.round((Object.values(sum_tugao)[1]/Object.values(sum_tugao)[0]) * 100) / 100}**\n`;
                             db.get("select sum(jornadas), sum(totalChampions) from champions", (err, sum_champs) => {
 
                                 if (err) {
@@ -88,7 +87,7 @@ module.exports = {
                                     else {
                                         message_to_send += `Número de apostas: **${Object.values(sum_champs)[0]}**\n`;
                                         message_to_send += `Total de pontos: **${Object.values(sum_champs)[1]}**\n`;
-                                        message_to_send += `Média de pontos: **${Object.values(sum_champs)[1]/Object.values(sum_champs)[0]}**\n`;
+                                        message_to_send += `Média de pontos: **${Math.round((Object.values(sum_champs)[1]/Object.values(sum_champs)[0]) * 100) / 100}**\n`;
                                     }
                                 }
             
@@ -106,7 +105,7 @@ module.exports = {
                                     console.log(sum_bestof);
                                     message_to_send += `Número de apostas: **${Object.values(sum_bestof)[0]}**\n`;
                                     message_to_send += `Total de pontos: **${Object.values(sum_bestof)[1]}**\n`;
-                                    message_to_send += `Média de pontos: **${Object.values(sum_bestof)[1]/Object.values(sum_bestof)[0]}**\n`;
+                                    message_to_send += `Média de pontos: **${Math.round((Object.values(sum_bestof)[1]/Object.values(sum_bestof)[0]) * 100) / 100}**\n`;
                 
                                     db.get("select count(*), sum(totalDiscordiano) from total", (err, sum_total) => {
 
@@ -120,7 +119,7 @@ module.exports = {
                                         message_to_send += "\n**TOTAL DISCORDIANO**\n";
                                         console.log(sum_total);
                                         message_to_send += `Total de pontos: **${Object.values(sum_total)[1]}\n**`;
-                                        message_to_send += `Média de pontos: **${Object.values(sum_total)[1]/Object.values(sum_total)[0]}**\n`;
+                                        message_to_send += `Média de pontos: **${Math.round((Object.values(sum_total)[1]/Object.values(sum_total)[0]) * 100) / 100}**\n`;
                     
 
                                         console.log(message_to_send);
