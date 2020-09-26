@@ -45,6 +45,7 @@ module.exports = {
                 {name: "**!minhaaposta**"        ,     value: "Verificar aposta registada"                      },
                 {name: "**!jornada**"            ,     value: "Verificar jornada ativa"                         },
                 {name: "**!minhaaposta**"        ,     value: "Mostra a sua aposta de uma competição especifica"},
+                {name: "**!stats**"              ,     value: "Mostra as estatísticas da competição"            },
                 );
             messageEmbed.setFooter("2/2");
         }

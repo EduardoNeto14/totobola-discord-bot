@@ -178,6 +178,9 @@ bot.on("message", message => {
 		console.log(args_comb);
 		bot.commands.get("alterarbestof").execute(message, args_comb);	
 	}
+	else if (command_space === 'stats') {
+		bot.commands.get("stats").execute(message, args);	
+	}
 	else {
 		const messageEmbed = new Discord.MessageEmbed().setTitle("Comando");
 		messageEmbed.setColor("");
