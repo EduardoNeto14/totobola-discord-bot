@@ -126,6 +126,10 @@ bot.on("message", message => {
 	else if (command_space === 'cleantugao') {
 		bot.commands.get("cleantugao").execute(message, args_space);	
 	}
+	else if (command_space === 'resultados') {
+		console.log("RESULTADOS: ", args_space);
+		bot.commands.get("resultados").execute(message, args_space);	
+	}
 	else if (command_space === 'cleanchampions') {
 		bot.commands.get("cleanchampions").execute(message, args_space);	
 	}

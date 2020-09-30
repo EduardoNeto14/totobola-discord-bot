@@ -12,7 +12,7 @@ module.exports = {
         messageEmbed.setColor("#FFFFFF");
         messageEmbed.setFooter(`${message.author.username}`, message.author.displayAvatarURL());
 
-        if (Object.keys(args) != 0) {
+        if (Object.keys(args).length != 0) {
             messageEmbed.setDescription("Número de argumentos inválido.");
             
             message.channel.send();
