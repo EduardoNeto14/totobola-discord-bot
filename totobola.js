@@ -28,10 +28,16 @@ bot.on("message", message => {
 
 	const args_space = message.content.slice(prefix.length).split(/ +/);
 	
+	console.log("ARGS -> ", args);
+	console.log("ARGS SPACE-> ", args_space);
+
 	const command = args.shift().toLowerCase().trim();
 
 	const command_space = args_space.shift().toLowerCase();
 	
+	console.log("ARGS (AFTER)-> ", args);
+	console.log("ARGS SPACE (AFTER)-> ", args_space);
+
 	var args_comb;
 
 	try {
@@ -82,8 +88,8 @@ bot.on("message", message => {
 		bot.commands.get("starttugao").execute(message, args_comb);	
 	}
 	else if (command_space === 'stoptugao') {
-		console.log("########STOP TUGÂO########\n", args_stop);
-		bot.commands.get("stoptugao").execute(message, args_stop);	
+		console.log("########STOP TUGÂO########\n", args_comb);
+		bot.commands.get("stoptugao").execute(message, args_comb);	
 	}
 	else if (command === 'apostarchampions') {
 		var aposta = args_comb.filter( function(und) {
@@ -95,8 +101,8 @@ bot.on("message", message => {
 		bot.commands.get("startchampions").execute(message, args_comb);	
 	}
 	else if (command_space === 'stopchampions') {
-		console.log(args_stop);
-		bot.commands.get("stopchampions").execute(message, args_stop);	
+		console.log(args_comb);
+		bot.commands.get("stopchampions").execute(message, args_comb);	
 	}
 	else if (command === 'apostarbestof') {
 		var aposta = args_comb.filter( function(und) {
@@ -108,8 +114,8 @@ bot.on("message", message => {
 		bot.commands.get("startbestof").execute(message, args_comb);	
 	}
 	else if (command_space === 'stopbestof') {
-		console.log(args_stop);
-		bot.commands.get("stopbestof").execute(message, args_stop);	
+		console.log(args_comb);
+		bot.commands.get("stopbestof").execute(message, args_comb);	
 	}
 	else if (command === 'totobola') {
 		var aposta = args.filter( function(und) {
