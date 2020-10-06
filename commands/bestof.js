@@ -35,7 +35,7 @@ module.exports = {
 					messageEmbed.setColor("#a62019");
 					for (const [index, row] of rows.entries()) {
 						result = `Pontos: **${row.totalBestOf}** --- Apostadas: **${row.jornadas}**`;
-						if (row.jornadas !== 0)	result += `--- Média: **${row.totalBestOf/row.jornadas}**`;
+						if (row.jornadas !== 0)	result += `--- Média: **${Math.round((row.totalBestOf/row.jornadas) * 100) / 100}**`;
 						messageEmbed.addField(`**(${index + 1}º)	${row.jogador}**`, result); 
 					}
 					message.channel.send(messageEmbed);
