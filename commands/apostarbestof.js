@@ -78,7 +78,7 @@ function get_predictions(message, messageEmbed, args, db) {
 	
 				
 				if (!error) {
-					if (!has_joker)		messageEmbed.addField("Aviso", "**Não introduziste nenhum joker. Utiliza o *!updatetugao* **"); 
+					if (!has_joker)		messageEmbed.addField("Aviso", "**Não introduziste nenhum joker. Utiliza o *!updatebestof* **"); 
 					db.get(`select jogador from ${tabela} where jogador = ?`, [message.author.username], (err, row) => {
 						
 						if (err) {

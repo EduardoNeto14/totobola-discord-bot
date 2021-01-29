@@ -75,10 +75,11 @@ bot.on("message", message => {
 		bot.commands.get("player").execute(message, args_space);	
 	}
 	else if (command === 'apostartugao') {
+		aposta = args_comb.filter( item => item );
 		//console.log("ARGS_COMB: ", args_comb);
-		var aposta = args_comb.filter( function(und) {
-			return und != undefined;
-		});
+		//var aposta = args_comb.filter( function(und) {
+		//	return und != undefined;
+		//});
 
 		console.log(`Aposta: ${aposta}\n`);
 		bot.commands.get("apostartugao").execute(message, aposta);	
@@ -92,9 +93,10 @@ bot.on("message", message => {
 		bot.commands.get("stoptugao").execute(message, args_comb);	
 	}
 	else if (command === 'apostarchampions') {
-		var aposta = args_comb.filter( function(und) {
-			return und != undefined;
-		});
+		aposta = args_comb.filter( item => item );
+		//var aposta = args_comb.filter( function(und) {
+		//	return und != undefined;
+		//});
 		bot.commands.get("apostarchampions").execute(message, aposta);	
 	}
 	else if (command_space === 'startchampions') {
@@ -105,9 +107,10 @@ bot.on("message", message => {
 		bot.commands.get("stopchampions").execute(message, args_comb);	
 	}
 	else if (command === 'apostarbestof') {
-		var aposta = args_comb.filter( function(und) {
-			return und != undefined;
-		});
+		aposta = args_comb.filter( item => item );
+		//var aposta = args_comb.filter( function(und) {
+		//	return und != undefined;
+		//});
 		bot.commands.get("apostarbestof").execute(message, aposta);	
 	}
 	else if (command_space === 'startbestof') {
@@ -143,22 +146,29 @@ bot.on("message", message => {
 		bot.commands.get("registar").execute(message, aposta);	
 	}
 	else if (command === 'updatetugao') {
-		var aposta = args_comb.filter( function(und) {
-			return und != undefined;
-		});
+		aposta = args_comb.filter( item => item );
+		//var aposta = args_comb.filter( function(und) {
+		//	return und != null;
+		//});
 		console.log(`Update Tugão: ${aposta}`);
 		bot.commands.get("updatetugao").execute(message, aposta);	
 	}
 	else if (command === 'updatechampions') {
-		var aposta = args_comb.filter( function(und) {
-			return und != undefined;
-		});
+		
+		aposta = args_comb.filter( item => item );
+		//var aposta = args_comb.filter( function(und) {
+		//	return und != null;
+		//});
+		console.log(`Update Champions: ${aposta}`);
 		bot.commands.get("updatechampions").execute(message, aposta);	
 	}
 	else if (command === 'updatebestof') {
-		var aposta = args_comb.filter( function(und) {
-			return und != undefined;
-		});
+		
+		aposta = args_comb.filter( item => item );
+		//var aposta = args_comb.filter( function(und) {
+		//	return und != null;    //dantes undefined
+		//});
+		console.log(`Update Best Of: ${aposta}`);
 		bot.commands.get("updatebestof").execute(message, aposta);	
 	}
 	else if (command_space === 'comandos') {
@@ -191,6 +201,24 @@ bot.on("message", message => {
 	else if (command_space === 'stats') {
 		bot.commands.get("stats").execute(message, args);	
 	}
+	else if (command_space === 'retirar') {
+		if (["MeRed", "Rouxinol Expansivo"].includes(message.author.username)) {
+			const messageEmbed = new Discord.MessageEmbed().setTitle("Pontuação");
+			messageEmbed.setColor("");
+			messageEmbed.setDescription(`1 ponto retirado ao garotão ${message.mentions.users.first()}`);
+			message.channel.send(messageEmbed);
+		}
+	}
+	else if (command_space === 'devolver') {
+		if (["MeRed", "Rouxinol Expansivo"].includes(message.author.username)) {
+			message.channel.send({
+				files : [{
+						attachment : "/home/eduardo/bot-totobola/afinal.gif",
+						name : "afinal.gif"
+					}]
+			});
+		}
+	}
 	else {
 		const messageEmbed = new Discord.MessageEmbed().setTitle("Comando");
 		messageEmbed.setColor("");
@@ -199,4 +227,4 @@ bot.on("message", message => {
 	}
 });
 
-bot.login("NzQwOTQwNjk1ODc0ODMwMzc3.XywUyw.DNicv1AbRIERmsgyM0d1-ivLeIY")
+bot.login("NzQwOTQwNjk1ODc0ODMwMzc3.XywUyw.Cc-ZrtdqnLXrgv9jYk5Zmfe0o3I")
